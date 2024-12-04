@@ -52,10 +52,13 @@ export function TodoPage() {
   useEffect(handleIndex, []);
 
   return (
-    <main>
+    <main className="min-h-screen pt-16">
       <TodoNew onCreate={handleCreate} />
       <TodoIndex todos={todos} onShow={handleShow} />
-      <Modal show={isTotosShowVisible} onClose={() => setIsTodosShowVisible(false)}>
+      <Modal
+        show={isTotosShowVisible}
+        onClose={() => setIsTodosShowVisible(false)}
+      >
         <TodosShow todo={currentTodo} onUpdate={handleUpdate} />
       </Modal>
     </main>
