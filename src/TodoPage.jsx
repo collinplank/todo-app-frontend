@@ -7,19 +7,16 @@ import { Modal } from "./Modal";
 
 export function TodoPage() {
   const [todos, setTodos] = useState([]);
-  const [isTotosShowVisible, setIsTodosShowVisible] = useState(false);
+  const [isTodosShowVisible, setIsTodosShowVisible] = useState(false);
   const [currentTodo, setCurrentTodo] = useState({});
 
   const handleIndex = () => {
-    console.log("handleIndex");
     axios.get("/todos.json").then((response) => {
-      console.log(response.data);
       setTodos(response.data);
     });
   };
 
   const handleCreate = (params, successCallback) => {
-    console.log("handleCreate");
     axios.post("/todos.json", params).then((response) => {
       setTodos([...todos, response.data]);
       successCallback();
@@ -27,21 +24,15 @@ export function TodoPage() {
   };
 
   const handleShow = (todo) => {
-    console.log("handleShow", todo);
     setIsTodosShowVisible(true);
     setCurrentTodo(todo);
   };
 
   const handleUpdate = (todo, params, successCallback) => {
-    console.log("handleUpdate");
     axios.patch(`/todos/${todo.id}.json`, params).then((response) => {
       setTodos(
         todos.map((p) => {
-          if (p.id === response.data.id) {
-            return response.data;
-          } else {
-            return p;
-          }
+          return p.id === response.data.id ? response.data : p;
         })
       );
       successCallback();
@@ -52,15 +43,16 @@ export function TodoPage() {
   useEffect(handleIndex, []);
 
   return (
-    <main className="min-h-screen pt-16">
-      <TodoNew onCreate={handleCreate} />
-      <TodoIndex todos={todos} onShow={handleShow} />
-      <Modal
-        show={isTotosShowVisible}
-        onClose={() => setIsTodosShowVisible(false)}
-      >
-        <TodosShow todo={currentTodo} onUpdate={handleUpdate} />
-      </Modal>
+    <main className="min-h-screen pt-16 bg-gray-50">
+      <div className="max-w-4xl mx-auto px-4">
+        <TodoNew onCreate={handleCreate} />
+        <TodoIndex todos={todos} onShow={handleShow} />
+      </div>
+      {isTodosShowVisible && (
+        <Modal onClose={() => setIsTodosShowVisible(false)}>
+          <TodosShow todo={currentTodo} onUpdate={handleUpdate} />
+        </Modal>
+      )}
     </main>
   );
 }
