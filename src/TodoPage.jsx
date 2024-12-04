@@ -22,7 +22,7 @@ export function TodoPage() {
   ];
 
   return (
-    <main>
+    <main className="min-h-screen pt-16">
       <TodoIndex todos={todos} />
     </main>
   );
