@@ -1,4 +1,5 @@
 import { TodoIndex } from "./TodoIndex";
+import { TodoNew } from "./TodoNew";
 
 export function TodoPage() {
   const todos = [
@@ -21,8 +22,13 @@ export function TodoPage() {
     },
   ];
 
+  const handleCreate = () => {
+    console.log("handleCreate");
+  };
+
   return (
     <main>
+      <TodoNew onCreate={handleCreate} />
       <TodoIndex todos={todos} />
     </main>
   );
