@@ -1,4 +1,4 @@
-export function TodoIndex({ todos }) {
+export function TodoIndex({ todos, onShow }) {
   return (
     <div>
       <h1>Todo: ({todos.length} total)</h1>
@@ -8,6 +8,7 @@ export function TodoIndex({ todos }) {
           <p>{todo.description}</p>
           <p>{todo.deadline}</p>
           <p>{todo.completed}</p>
+          <button onClick={() => onShow(todo)}>More Information</button>
         </div>
       ))}
     </div>
