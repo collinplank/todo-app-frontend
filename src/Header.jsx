@@ -7,33 +7,33 @@ export function Header() {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <a
-              href="#"
+            <Link
+              to="/"
               className="text-white font-semibold text-lg hover:text-blue-400 transition-colors duration-200"
             >
               Home
-            </a>
-            <a
-              href="/"
+            </Link>
+            <Link
+              to="/todos"
               className="text-white hover:text-blue-400 transition-colors duration-200"
             >
               Todos
-            </a>
+            </Link>
           </div>
 
           <div className="flex items-center space-x-4">
-            <a
-              href="/login"
+            <Link
+              to="/login"
               className="text-white hover:text-blue-400 transition-colors duration-200"
             >
               Login
-            </a>
-            <a
-              href="/signup"
+            </Link>
+            <Link
+              to="/signup"
               className="text-white hover:text-blue-400 transition-colors duration-200"
             >
-              <Link to="/signup">Signup</Link>
-            </a>
+              Signup
+            </Link>
             <LogoutLink />
           </div>
         </div>
