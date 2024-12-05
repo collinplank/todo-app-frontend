@@ -23,13 +23,29 @@ const localizer = dateFnsLocalizer({
   locales,
 });
 
+const categoryColors = {
+  1: "#FDA4AF", // Personal
+  2: "#93C5FD", // Work
+  3: "#86EFAC", // Shopping
+  4: "#FCD34D", // Health
+  5: "#C4B5FD", // Other
+};
+
 export function CalendarPage() {
   const [todos, setTodos] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTodo, setSelectedTodo] = useState(null);
+  const [categories, setCategories] = useState([
+    { id: 1, name: "Red" },
+    { id: 2, name: "Blue" },
+    { id: 3, name: "Green" },
+    { id: 4, name: "Yellow" },
+    { id: 5, name: "Purple" },
+  ]);
 
   useEffect(() => {
     axios.get("/todos.json").then((response) => {
+      console.log("API Response:", response.data); // Debug response format
       setTodos(response.data);
     });
   }, []);
@@ -39,14 +55,38 @@ export function CalendarPage() {
     setIsModalOpen(true);
   };
 
+  const handleUpdate = (todo, params) => {
+    // Add todo.user_id to params if needed by backend
+    const updatedParams = {
+      ...params,
+      user_id: todo.user_id,
+    };
+
+    axios
+      .patch(`/todos/${todo.id || todo.user_id}.json`, updatedParams)
+      .then((response) => {
+        console.log("Update Response:", response.data); // Debug update response
+        setTodos(
+          todos.map((t) => (t.id === response.data.id ? response.data : t))
+        );
+        setIsModalOpen(false);
+      })
+      .catch((error) => {
+        console.error("Error updating todo:", error.response?.data || error);
+      });
+  };
+
   const events = todos.map((todo) => {
-    const date = parseISO(todo.deadline);
     return {
       title: todo.title,
-      start: date,
-      end: date,
+      start: parseISO(todo.deadline),
+      end: parseISO(todo.deadline),
       allDay: true,
-      resource: todo,
+      resource: {
+        ...todo,
+        id: todo.id || todo.user_id,
+      },
+      backgroundColor: categoryColors[todo.category_id] || "#CBD5E1",
     };
   });
 
@@ -65,13 +105,23 @@ export function CalendarPage() {
             endAccessor="end"
             onSelectEvent={handleSelectEvent}
             views={["month", "week", "day"]}
+            eventPropGetter={(event) => ({
+              style: {
+                backgroundColor: event.backgroundColor,
+                border: "none",
+              },
+            })}
           />
         </div>
       </div>
 
       {isModalOpen && selectedTodo && (
         <Modal show={isModalOpen} onClose={() => setIsModalOpen(false)}>
-          <TodoDetails todo={selectedTodo} />
+          <TodoDetails
+            todo={selectedTodo}
+            onUpdate={handleUpdate}
+            availableCategories={categories}
+          />
         </Modal>
       )}
     </div>
