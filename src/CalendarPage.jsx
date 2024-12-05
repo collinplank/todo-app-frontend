@@ -24,23 +24,53 @@ const localizer = dateFnsLocalizer({
 });
 
 const categoryColors = {
-  1: "#FDA4AF", // Personal
-  2: "#93C5FD", // Work
-  3: "#86EFAC", // Shopping
-  4: "#FCD34D", // Health
-  5: "#C4B5FD", // Other
+  1: "#FDA4AF", // Soft Red
+  2: "#93C5FD", // Light Blue
+  3: "#86EFAC", // Light Green
+  4: "#FCD34D", // Yellow
+  5: "#C4B5FD", // Purple
+  6: "#F87171", // Salmon Red
+  7: "#60A5FA", // Bright Blue
+  8: "#4ADE80", // Bright Green
+  9: "#FBBF24", // Orange Yellow
+  10: "#A78BFA", // Medium Purple
+  11: "#FB7185", // Pink
+  12: "#38BDF8", // Sky Blue
+  13: "#34D399", // Emerald
+  14: "#F59E0B", // Amber
+  15: "#8B5CF6", // Violet
+  16: "#EC4899", // Hot Pink
+  17: "#0EA5E9", // Deep Sky Blue
+  18: "#10B981", // Teal
+  19: "#D97706", // Dark Orange
+  20: "#6366F1", // Indigo
 };
 
 export function CalendarPage() {
   const [todos, setTodos] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTodo, setSelectedTodo] = useState(null);
-  const [categories, setCategories] = useState([
-    { id: 1, name: "Red" },
-    { id: 2, name: "Blue" },
-    { id: 3, name: "Green" },
+  const [categories] = useState([
+    { id: 1, name: "Soft Red" },
+    { id: 2, name: "Light Blue" },
+    { id: 3, name: "Light Green" },
     { id: 4, name: "Yellow" },
     { id: 5, name: "Purple" },
+    { id: 6, name: "Salmon Red" },
+    { id: 7, name: "Bright Blue" },
+    { id: 8, name: "Bright Green" },
+    { id: 9, name: "Orange Yellow" },
+    { id: 10, name: "Medium Purple" },
+    { id: 11, name: "Pink" },
+    { id: 12, name: "Sky Blue" },
+    { id: 13, name: "Emerald" },
+    { id: 14, name: "Amber" },
+    { id: 15, name: "Violet" },
+    { id: 16, name: "Hot Pink" },
+    { id: 17, name: "Deep Sky Blue" },
+    { id: 18, name: "Teal" },
+    { id: 19, name: "Dark Orange" },
+    { id: 20, name: "Indigo" },
   ]);
 
   useEffect(() => {
