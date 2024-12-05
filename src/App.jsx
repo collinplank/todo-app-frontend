@@ -7,6 +7,7 @@ import { LoginPage } from "./LoginPage";
 import { CategoriesPage } from "./CategoriesPage";
 import { CategoriesShow } from "./CategoriesShow";
 import { Footer } from "./Footer";
+import { CalendarPage } from "./CalendarPage";
 import { TodoPage } from "./TodoPage";
 
 axios.defaults.baseURL = "http://localhost:3000";
@@ -29,7 +30,10 @@ const router = createBrowserRouter([
       {
         path: "/categories/:id",
         element: <CategoriesShow />,
-        loader: ({ params }) => axios.get(`/categories/${params.id}.json`).then((response) => response.data),
+        loader: ({ params }) =>
+          axios
+            .get(`/categories/${params.id}.json`)
+            .then((response) => response.data),
       },
       {
         path: "/",
@@ -46,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <LoginPage />,
+      },
+      {
+        path: "/calendar",
+        element: <CalendarPage />,
       },
     ],
   },
