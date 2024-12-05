@@ -1,45 +1,39 @@
-import { useState } from "react";
-
-export function TodoDetails({ todo, onUpdate, availableCategories }) {
+export function TodoDetails({ todo }) {
   const categoryColors = {
-    1: "#FDA4AF",
-    2: "#93C5FD",
-    3: "#86EFAC",
-    4: "#FCD34D",
-    5: "#C4B5FD",
+    1: "#FDA4AF", // Soft Red
+    2: "#93C5FD", // Light Blue
+    3: "#86EFAC", // Light Green
+    4: "#FCD34D", // Yellow
+    5: "#C4B5FD", // Purple
+    6: "#F87171", // Salmon Red
+    7: "#60A5FA", // Bright Blue
+    8: "#4ADE80", // Bright Green
+    9: "#FBBF24", // Orange Yellow
+    10: "#A78BFA", // Medium Purple
+    11: "#FB7185", // Pink
+    12: "#38BDF8", // Sky Blue
+    13: "#34D399", // Emerald
+    14: "#F59E0B", // Amber
+    15: "#8B5CF6", // Violet
+    16: "#EC4899", // Hot Pink
+    17: "#0EA5E9", // Deep Sky Blue
+    18: "#10B981", // Teal
+    19: "#D97706", // Dark Orange
+    20: "#6366F1", // Indigo
   };
 
-  const handleCategoryChange = (e) => {
-    onUpdate(todo, {
-      category_id: parseInt(e.target.value),
-    });
-  };
+  const backgroundColor = categoryColors[todo.category_id] || "#CBD5E1"; // Fallback color
 
   return (
     <div className="p-6">
       <h2 className="text-2xl font-bold mb-4">{todo.title}</h2>
       <p className="text-gray-600 mb-4">{todo.description}</p>
       <div className="mb-4">
-        <p className="font-semibold mb-2">
-          Category: {todo.category_name} (ID: {todo.category_id})
-        </p>
-        <label className="font-semibold block mb-2">Category Color:</label>
-        <select
-          value={todo.category_id}
-          onChange={handleCategoryChange}
-          className="w-full p-2 border rounded-md mb-2"
-          style={{ backgroundColor: categoryColors[todo.category_id] }}
-        >
-          {availableCategories.map((category) => (
-            <option
-              key={category.id}
-              value={category.id}
-              style={{ backgroundColor: categoryColors[category.id] }}
-            >
-              {category.name}
-            </option>
-          ))}
-        </select>
+        <div className="p-2 rounded-md mb-2" style={{ backgroundColor }}>
+          <p className="font-semibold">
+            Category: {todo.category_name} (ID: {todo.category_id})
+          </p>
+        </div>
       </div>
       <p className="mb-2">
         <span className="font-semibold">Deadline:</span> {todo.deadline}
