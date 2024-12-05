@@ -10,7 +10,7 @@ export function CategoryIndex({ categories, onShow }) {
               onClick={() => onShow(category)}
               className="mt-4 inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
             >
-              More Information
+              Todos
             </button>
           </div>
         ))}
