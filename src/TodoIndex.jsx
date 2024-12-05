@@ -10,6 +10,7 @@ export function TodoIndex({ todos, onShow }) {
             <p className="mt-2 text-gray-500">
               Deadline: <span className="font-medium">{todo.deadline}</span>
             </p>
+            <p className="mt-2 text-gray-500">{todo.category_id}</p>
             <p className="mt-2">
               Status:{" "}
               <span className={`${todo.completed ? "text-green-600" : "text-red-600"} font-medium`}>
