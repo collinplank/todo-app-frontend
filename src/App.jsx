@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import { Header } from "./Header";
 import { SignupPage } from "./SignupPage";
 import { LoginPage } from "./LoginPage";
-import { TodoPage } from "./TodoPage";
+import { CategoriesPage } from "./CategoriesPage";
 import { Footer } from "./Footer";
 
 axios.defaults.baseURL = "http://localhost:3000";
@@ -20,8 +20,8 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "/",
-        element: <TodoPage />,
+        path: "/categories",
+        element: <CategoriesPage />,
       },
       {
         path: "/signup",
