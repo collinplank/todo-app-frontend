@@ -1,18 +1,43 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useLoaderData } from "react-router-dom";
+import { useState } from "react";
+import { TodosShow } from "./TodosShow";
 import { TodoIndex } from "./TodoIndex";
 import { TodoNew } from "./TodoNew";
+import { Modal } from "./Modal";
 
 export function CategoriesShow() {
   const category = useLoaderData();
   const navigate = useNavigate();
+  const [todos, setTodos] = useState([]);
+  const [isTodosShowVisible, setIsTodosShowVisible] = useState(false);
+  const [currentTodo, setCurrentTodo] = useState({});
 
-  const handleCreate = (params, successCallback) => {
-    axios.post("/todos.json", params).then((response) => {
+  const handleCreate = (params) => {
+    axios.post("/todos.json", params).then(() => {
       //   setTodos([...todos, response.data]);
       //   successCallback();
       navigate(`/categories/${category.id}`);
+    });
+  };
+
+  const handleShow = (todo) => {
+    console.log("handleShow");
+    setIsTodosShowVisible(true);
+    setCurrentTodo(todo);
+  };
+
+  const handleUpdate = (todo, params, successCallback) => {
+    axios.patch(`/todos/${todo.id}.json`, params).then((response) => {
+      //   setTodos(
+      //     todos.map((p) => {
+      //       return p.id === response.data.id ? response.data : p;
+      //     })
+      //   );
+      //   successCallback();
+      navigate(`/categories/${category.id}`);
+      setIsTodosShowVisible(false);
     });
   };
 
@@ -31,9 +56,12 @@ export function CategoriesShow() {
 
           {/* Todo List */}
           <section>
-            <TodoIndex todos={category.todos} />
+            <TodoIndex todos={category.todos} onShow={handleShow} />
           </section>
         </div>
+        <Modal show={isTodosShowVisible} onClose={() => setIsTodosShowVisible(false)}>
+          <TodosShow todo={currentTodo} onUpdate={handleUpdate} />
+        </Modal>
       </div>
     </div>
   );
