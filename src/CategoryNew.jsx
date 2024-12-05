@@ -10,13 +10,13 @@ export function CategoryNew({ onCreate }) {
       <h2 className="text-xl font-semibold mb-4">Create New Category</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label htmlFor="title" className="block text-sm font-medium text-gray-700">
-            Title:
+          <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+            Name:
           </label>
           <input
-            name="title"
+            name="name"
             type="text"
-            id="title"
+            id="name"
             required
             className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
           />

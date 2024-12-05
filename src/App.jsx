@@ -1,6 +1,7 @@
 import axios from "axios";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import { Header } from "./Header";
+import { HomePage } from "./HomePage";
 import { SignupPage } from "./SignupPage";
 import { LoginPage } from "./LoginPage";
 import { CategoriesPage } from "./CategoriesPage";
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: "/categories",
         element: <CategoriesPage />,
+      },
+      {
+        path: "/",
+        element: <HomePage />,
       },
       {
         path: "/signup",
