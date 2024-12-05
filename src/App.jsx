@@ -5,6 +5,7 @@ import { HomePage } from "./HomePage";
 import { SignupPage } from "./SignupPage";
 import { LoginPage } from "./LoginPage";
 import { Footer } from "./Footer";
+import { CalendarPage } from "./CalendarPage";
 
 axios.defaults.baseURL = "http://localhost:3000";
 axios.defaults.withCredentials = true;
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <LoginPage />,
+      },
+      {
+        path: "/calendar",
+        element: <CalendarPage />,
       },
     ],
   },

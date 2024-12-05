@@ -19,6 +19,12 @@ export function Header() {
             >
               Todos
             </Link>
+            <Link
+              to="/calendar"
+              className="text-white hover:text-blue-400 transition-colors duration-200"
+            >
+              Calendar
+            </Link>
           </div>
 
           <div className="flex items-center space-x-4">
