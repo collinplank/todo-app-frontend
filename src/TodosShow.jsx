@@ -1,4 +1,4 @@
-export function TodosShow({ todo, onUpdate }) {
+export function TodosShow({ todo, onUpdate, onDestroy }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const params = new FormData(event.target);
@@ -78,6 +78,13 @@ export function TodosShow({ todo, onUpdate }) {
           className="w-full py-2 px-4 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
         >
           Update Todo
+        </button>
+        <button
+          onClick={() => onDestroy(todo)}
+          type="submit"
+          className="w-full py-2 px-4 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        >
+          Delete
         </button>
       </form>
     </div>

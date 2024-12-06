@@ -28,8 +28,8 @@ export function CategoriesShow() {
     setCurrentTodo(todo);
   };
 
-  const handleUpdate = (todo, params, successCallback) => {
-    axios.patch(`/todos/${todo.id}.json`, params).then((response) => {
+  const handleUpdate = (todo, params) => {
+    axios.patch(`/todos/${todo.id}.json`, params).then(() => {
       //   setTodos(
       //     todos.map((p) => {
       //       return p.id === response.data.id ? response.data : p;
@@ -37,6 +37,14 @@ export function CategoriesShow() {
       //   );
       //   successCallback();
       navigate(`/categories/${category.id}`);
+      setIsTodosShowVisible(false);
+    });
+  };
+
+  const handleDestroy = (todo) => {
+    console.log("handleDestroy", todo);
+    axios.delete(`/todos/${todo.id}.json`).then(() => {
+      setTodos(todos.filter((p) => p.id !== todo.id));
       setIsTodosShowVisible(false);
     });
   };
@@ -60,7 +68,7 @@ export function CategoriesShow() {
           </section>
         </div>
         <Modal show={isTodosShowVisible} onClose={() => setIsTodosShowVisible(false)}>
-          <TodosShow todo={currentTodo} onUpdate={handleUpdate} />
+          <TodosShow todo={currentTodo} onUpdate={handleUpdate} onDestroy={handleDestroy} />
         </Modal>
       </div>
     </div>
