@@ -48,62 +48,25 @@ const categoryColors = {
 
 export function CalendarPage() {
   const [todos, setTodos] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTodo, setSelectedTodo] = useState(null);
-  const [categories] = useState([
-    { id: 1, name: "Soft Red" },
-    { id: 2, name: "Light Blue" },
-    { id: 3, name: "Light Green" },
-    { id: 4, name: "Yellow" },
-    { id: 5, name: "Purple" },
-    { id: 6, name: "Salmon Red" },
-    { id: 7, name: "Bright Blue" },
-    { id: 8, name: "Bright Green" },
-    { id: 9, name: "Orange Yellow" },
-    { id: 10, name: "Medium Purple" },
-    { id: 11, name: "Pink" },
-    { id: 12, name: "Sky Blue" },
-    { id: 13, name: "Emerald" },
-    { id: 14, name: "Amber" },
-    { id: 15, name: "Violet" },
-    { id: 16, name: "Hot Pink" },
-    { id: 17, name: "Deep Sky Blue" },
-    { id: 18, name: "Teal" },
-    { id: 19, name: "Dark Orange" },
-    { id: 20, name: "Indigo" },
-  ]);
 
   useEffect(() => {
+    // Fetch todos
     axios.get("/todos.json").then((response) => {
-      console.log("API Response:", response.data); // Debug response format
       setTodos(response.data);
+    });
+
+    // Fetch categories
+    axios.get("/categories.json").then((response) => {
+      setCategories(response.data);
     });
   }, []);
 
   const handleSelectEvent = (event) => {
     setSelectedTodo(event.resource);
     setIsModalOpen(true);
-  };
-
-  const handleUpdate = (todo, params) => {
-    // Add todo.user_id to params if needed by backend
-    const updatedParams = {
-      ...params,
-      user_id: todo.user_id,
-    };
-
-    axios
-      .patch(`/todos/${todo.id || todo.user_id}.json`, updatedParams)
-      .then((response) => {
-        console.log("Update Response:", response.data); // Debug update response
-        setTodos(
-          todos.map((t) => (t.id === response.data.id ? response.data : t))
-        );
-        setIsModalOpen(false);
-      })
-      .catch((error) => {
-        console.error("Error updating todo:", error.response?.data || error);
-      });
   };
 
   const events = todos.map((todo) => {
@@ -147,11 +110,7 @@ export function CalendarPage() {
 
       {isModalOpen && selectedTodo && (
         <Modal show={isModalOpen} onClose={() => setIsModalOpen(false)}>
-          <TodoDetails
-            todo={selectedTodo}
-            onUpdate={handleUpdate}
-            availableCategories={categories}
-          />
+          <TodoDetails todo={selectedTodo} availableCategories={categories} />
         </Modal>
       )}
     </div>
