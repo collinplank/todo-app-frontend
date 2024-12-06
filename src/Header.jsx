@@ -15,7 +15,9 @@ export function Header() {
 
   return (
     <header className="bg-slate-950 shadow-md fixed w-full top-0 z-50">
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        {" "}
+        {/* Increased py-4 to py-6 */}
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
             <Link
