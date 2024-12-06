@@ -46,6 +46,7 @@ export function CategoriesShow() {
     axios.delete(`/todos/${todo.id}.json`).then(() => {
       setTodos(todos.filter((p) => p.id !== todo.id));
       setIsTodosShowVisible(false);
+      navigate(`/categories/${category.id}`);
     });
   };
 
@@ -64,7 +65,7 @@ export function CategoriesShow() {
 
           {/* Todo List */}
           <section>
-            <TodoIndex todos={category.todos} onShow={handleShow} />
+            <TodoIndex categoryId={category.id} todos={category.todos} onShow={handleShow} />
           </section>
         </div>
         <Modal show={isTodosShowVisible} onClose={() => setIsTodosShowVisible(false)}>
