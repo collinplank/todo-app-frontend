@@ -61,6 +61,10 @@ export function TodosShow({ todo, onUpdate, onDestroy }) {
             className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
           />
         </div>
+
+        {/* Hidden input to ensure a value is always submitted for completed */}
+        <input type="hidden" name="completed" value="false" />
+
         <div className="flex items-center">
           <input
             defaultChecked={todo.completed}
@@ -68,6 +72,7 @@ export function TodosShow({ todo, onUpdate, onDestroy }) {
             type="checkbox"
             id="completed"
             className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+            value="true"
           />
           <label htmlFor="completed" className="ml-2 block text-sm text-gray-700">
             Completed
@@ -86,7 +91,7 @@ export function TodosShow({ todo, onUpdate, onDestroy }) {
             }
           }}
           type="button"
-          className="w-full py-2 px-4 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          className="w-full py-2 px-4 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500"
         >
           Delete
         </button>
