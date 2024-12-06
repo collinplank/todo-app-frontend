@@ -11,14 +11,7 @@ export function HomePage() {
           <p className="text-xl md:text-2xl mb-8 text-gray-300 animate-fade-in-up delay-200">
             Simple, effective task management for everyone
           </p>
-          <div className="flex justify-center space-x-4 animate-fade-in-up delay-300">
-            <button className="px-8 py-3 bg-purple-600 text-white rounded-full hover:bg-purple-700 transition-all transform hover:scale-105">
-              Get Started
-            </button>
-            <button className="px-8 py-3 border border-purple-400 text-purple-400 rounded-full hover:bg-purple-400/10 transition-all">
-              Learn More
-            </button>
-          </div>
+          <div className="flex justify-center space-x-4 animate-fade-in-up delay-300"></div>
         </div>
       </section>
 
