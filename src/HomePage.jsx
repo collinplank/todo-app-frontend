@@ -2,7 +2,9 @@ export function HomePage() {
   return (
     <div className="min-h-screen bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900 animate-gradient-animation bg-[length:400%_400%]">
       {/* Hero Section */}
-      <section className="pt-24 pb-20 text-white relative overflow-hidden">
+      <section className="pt-32 pb-20 text-white relative overflow-hidden">
+        {" "}
+        {/* Changed pt-24 to pt-32 */}
         <div className="absolute inset-0 bg-gradient-to-b from-purple-500/20 to-transparent"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h1 className="text-4xl md:text-8xl font-bold mb-6 animate-fade-in-up bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">

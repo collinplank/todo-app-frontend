@@ -84,11 +84,17 @@ export function CalendarPage() {
   });
 
   return (
-    <div className="min-h-screen pt-16 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 py-8">
-        <h1 className="text-2xl font-bold mb-6">Calendar View</h1>
+    <div className="min-h-screen pt-24 bg-gradient-to-r from-[#1a1c2e] via-[#2d1b44] to-[#1a1c2e] relative">
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-purple-500/10 via-blue-500/5 to-transparent pointer-events-none" />
+
+      {/* Content container */}
+      <div className="max-w-7xl mx-auto px-4 py-8 relative z-10">
+        <h1 className="text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-blue-200 to-cyan-300 pb-2">
+          Calendar
+        </h1>
         <div
-          className="bg-white p-6 rounded-lg shadow-lg"
+          className="bg-white/90 backdrop-filter rounded-xl p-8 shadow-2xl border border-white/10"
           style={{ height: "80vh" }}
         >
           <Calendar
