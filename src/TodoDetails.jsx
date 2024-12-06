@@ -1,4 +1,4 @@
-export function TodoDetails({ todo }) {
+export function TodoDetails({ todo, availableCategories }) {
   const categoryColors = {
     1: "#FDA4AF", // Soft Red
     2: "#93C5FD", // Light Blue
@@ -24,15 +24,18 @@ export function TodoDetails({ todo }) {
 
   const backgroundColor = categoryColors[todo.category_id] || "#CBD5E1"; // Fallback color
 
+  // Find category name from availableCategories
+  const categoryName =
+    availableCategories?.find((cat) => cat.id === todo.category_id)?.name ||
+    "Uncategorized";
+
   return (
     <div className="p-6">
       <h2 className="text-2xl font-bold mb-4">{todo.title}</h2>
       <p className="text-gray-600 mb-4">{todo.description}</p>
       <div className="mb-4">
         <div className="p-2 rounded-md mb-2" style={{ backgroundColor }}>
-          <p className="font-semibold">
-            Category: {todo.category_name} (ID: {todo.category_id})
-          </p>
+          <p className="font-semibold">Category: {categoryName}</p>
         </div>
       </div>
       <p className="mb-2">
