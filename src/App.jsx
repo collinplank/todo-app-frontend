@@ -30,10 +30,7 @@ const router = createBrowserRouter([
       {
         path: "/categories/:id",
         element: <CategoriesShow />,
-        loader: ({ params }) =>
-          axios
-            .get(`/categories/${params.id}.json`)
-            .then((response) => response.data),
+        loader: ({ params }) => axios.get(`/categories/${params.id}.json`).then((response) => response.data),
       },
       {
         path: "/",
