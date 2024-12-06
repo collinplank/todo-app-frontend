@@ -26,17 +26,14 @@ export function Header() {
             >
               Home
             </Link>
-            <Link
-              to="/categories"
-              className="text-white hover:text-blue-400 transition-colors duration-200"
-            >
+            <Link to="/categories" className="text-white hover:text-blue-400 transition-colors duration-200">
               Categories
             </Link>
-            <Link
-              to="/calendar"
-              className="text-white hover:text-blue-400 transition-colors duration-200"
-            >
+            <Link to="/calendar" className="text-white hover:text-blue-400 transition-colors duration-200">
               Calendar
+            </Link>
+            <Link to="/todos" className="text-white hover:text-blue-400 transition-colors duration-200">
+              All Todos
             </Link>
           </div>
 
@@ -48,16 +45,10 @@ export function Header() {
               </>
             ) : (
               <>
-                <Link
-                  to="/login"
-                  className="text-white hover:text-blue-400 transition-colors duration-200"
-                >
+                <Link to="/login" className="text-white hover:text-blue-400 transition-colors duration-200">
                   Login
                 </Link>
-                <Link
-                  to="/signup"
-                  className="text-white hover:text-blue-400 transition-colors duration-200"
-                >
+                <Link to="/signup" className="text-white hover:text-blue-400 transition-colors duration-200">
                   Signup
                 </Link>
               </>
